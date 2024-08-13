@@ -1,54 +1,77 @@
-{% extends 'base.html' %} {% block title %}
-<title>CFS1 CHECK-IN</title>
-{% endblock title %} {% block content %}
-
-<div class="checkinForm">
-	<div class="title">
-		<h2>CFS CHECK-IN</h2>
-	</div>
-	<div class="box">
-		<div class="checkin form">
-            <form method="post" action="">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.driver_name.label_tag }}
-                    {{ form.driver_name }}
-                </div>
-                <div class="form-group">
-                    {{ form.truck_number.label_tag }}
-                    {{ form.truck_number }}
-                </div>
-                <div class="form-group">
-                    {{ form.phone_number.label_tag }}
-                    {{ form.phone_number }}
-                </div>
-                <div class="form-group">
-                    {{ form.checkin_time.label_tag }}
-                    {{ form.checkin_time }}
-                </div>
-                <div class="form-group">
-                    {{ form.factory.label_tag }}
-                    {{ form.factory }}
-                </div>
-                <div class="form-group">
-                    {{ form.shipper.label_tag }}
-                    {{ form.shipper }}
-                </div>
-                <div class="form-group">
-                    {{ form.remark.label_tag }}
-                    {{ form.remark }}
-                </div>
-                <input type="submit" value="Submit">
-            </form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CFS1 CHECK-IN</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	</head>
+	<body>
+		<div class="bg-create">
+			<div class="checkinForm">
+				<div class="title">
+					<h2>CFS CHECK-IN</h2>
+				</div>
+				<div class="box">
+					<!-- Form -->
+					<div class="checkin form">
+						<h3>Thông tin check-in</h3>
+						<form method="post" action="">
+							{% csrf_token %}
+							<div class="form-group">
+								<label for="{{ form.driver_name.id_for_label }}"
+									>{{ form.driver_name.label }}</label
+								>
+								{{ form.driver_name }}
+							</div>
+							<div class="form-group">
+								<label
+									for="{{ form.truck_number.id_for_label }}"
+									>{{ form.truck_number.label }}</label
+								>
+								{{ form.truck_number }}
+							</div>
+							<div class="form-group">
+								<label
+									for="{{ form.phone_number.id_for_label }}"
+									>{{ form.phone_number.label }}</label
+								>
+								{{ form.phone_number }}
+							</div>
+							<div class="form-group">
+								<label
+									for="{{ form.checkin_time.id_for_label }}"
+									>{{ form.checkin_time.label }}</label
+								>
+								{{ form.checkin_time }}
+							</div>
+							<div class="form-group">
+								<label for="{{ form.factory.id_for_label }}"
+									>Nhà máy</label
+								>
+								{{ form.factory }}
+							</div>
+							<div class="form-group">
+								<label for="{{ form.shipper.id_for_label }}"
+									>{{ form.shipper.label }}</label
+								>
+								{{ form.shipper }}
+							</div>
+							<div class="form-group">
+								<label for="{{ form.remark.id_for_label }}"
+									>{{ form.remark.label }}</label
+								>
+								{{ form.remark }}
+							</div>
+							<button type="submit" class="submit-btn">
+								Gửi
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="checkin info">
-
-        </div>
-
-        <div class="checkin process">
-
-        </div>
-	</div>
-</div>
-
-{% endblock content %}
+	</body>
+</html>

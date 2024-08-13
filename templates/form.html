@@ -1,0 +1,28 @@
+<form method="POST" action="">
+    {% csrf_token %}
+  
+    {% for field in form %}
+    <div class="mb-2 row">
+  
+      <div class="col-sm-2">
+        {{ field.label_tag }}
+      </div>
+  
+      <div class="col-sm-10 col-md-8 col-lg-6">
+        {{ field }}
+      </div>
+  
+      {% if field.help_text %}
+        <span class="help offset-md-2">{{ field.help_text|safe }}</span>
+      {% endif %}
+  
+      {% if form.errors %}
+        <span class="offset-md-2">{{ field.errors }}</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+      <hr class="border border-danger border-2 opacity-50">
+    <button type="submit" class="btn btn-primary">{{ form_name }}</button>
+  
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning mx-2">Cancel</a>
+  </form>

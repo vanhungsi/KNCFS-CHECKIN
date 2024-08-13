@@ -1,11 +1,13 @@
 from django.forms import ModelForm
+from django import forms
 from .models import Checkin
 
+
 class CheckinForm(ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     super(Checkin1Form, self).__init__(*args, **kwargs)
-    #     for visible in self.visible_fields():
-    #         visible.field.widget['class'] = 'form-control'
+    def __init__(self, *args, **kwargs):
+        super(CheckinForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = Checkin

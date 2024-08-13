@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block title %}
+<title>CFS1 CHECK-IN</title>
+{% endblock title %} {% block content %}
+<div class="bg-view">
+	<div class="container">
+		<div class="px-5 my-5 text-center">
+			<h1>CHECK-IN LIST VIEW</h1>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">SỐ XE</th>
+					<th scope="col">TÊN TÀI XẾ</th>
+					<th scope="col">SỐ ĐIỆN THOẠI</th>
+					<th scope="col">GIỜ CHECK-IN</th>
+					<th scope="col">NHÀ MÁY</th>
+					<th scope="col">SHIPPER</th>
+					<th scope="col">GHI CHÚ</th>
+					<th scope="col" class="px-4">Action</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for checkin in object_list %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<!-- Index number -->
+					<td>{{ checkin.truck_number }}</td>
+					<td>{{ checkin.driver_name }}</td>
+					<td>{{ checkin.phone_number }}</td>
+					<td>{{ checkin.checkin_time|date:"h:i d/m/Y" }}</td>
+					<!-- Format date/time -->
+					<td>{{ checkin.factory.factory_name }}</td>
+					<!-- Assuming factory has a 'name' field -->
+					<td>{{ checkin.shipper }}</td>
+					<td>{{ checkin.remark }}</td>
+                    <td>
+                        <a href="{% url 'checkin:checkin-update' checkin.id %}">
+                            <button type="button" class=" btn btn-sm btn-primary mx-2"
+                                    data-form-url="">
+                                <span class="fa fa-pencil"></span>
+                            </button>
+                        </a>
+                        <a href="{% url 'checkin:checkin-delete' checkin.id %}">
+                            <button type="button" class=" btn btn-sm btn-danger"
+                                    data-form-url="">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </a>
+
+                    </td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="9" class="text-center">
+						No check-ins available
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock content %}
