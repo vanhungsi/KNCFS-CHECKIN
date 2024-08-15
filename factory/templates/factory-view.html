@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    <title>Factories View</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="bg-view">
+	<div class="container">
+		<div class="px-5 my-5 text-center">
+			<h1>FACTORIES LIST VIEW</h1>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">FACTORY CODE</th>
+					<th scope="col">FACTORY NAME</th>
+					<th scope="col" class="px-4">Action</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for factory in object_list %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ factory.factory_code }}</td>
+					<td>{{ factory.factory_name }}</td>
+					<td>
+						<a href="{% url 'factory:factory-update' factory.id %}">
+							<button
+								type="button"
+								class="btn btn-sm btn-primary mx-2"
+								data-form-url=""
+							>
+								<span class="fa fa-pencil"></span>
+							</button>
+						</a>
+						<a href="{% url 'factory:factory-delete' factory.id %}">
+							<button
+								type="button"
+								class="btn btn-sm btn-danger"
+								data-form-url=""
+							>
+								<span class="fa fa-trash"></span>
+							</button>
+						</a>
+					</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="9" class="text-center">
+						No factory available
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock content %}

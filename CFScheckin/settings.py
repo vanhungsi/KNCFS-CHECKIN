@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'checkin.apps.CheckinConfig',
     'factory.apps.FactoryConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

@@ -29,26 +29,31 @@
 					<td>{{ checkin.driver_name }}</td>
 					<td>{{ checkin.phone_number }}</td>
 					<td>{{ checkin.checkin_time|date:"h:i d/m/Y" }}</td>
-					<!-- Format date/time -->
+
 					<td>{{ checkin.factory.factory_name }}</td>
-					<!-- Assuming factory has a 'name' field -->
+
 					<td>{{ checkin.shipper }}</td>
 					<td>{{ checkin.remark }}</td>
-                    <td>
-                        <a href="{% url 'checkin:checkin-update' checkin.id %}">
-                            <button type="button" class=" btn btn-sm btn-primary mx-2"
-                                    data-form-url="">
-                                <span class="fa fa-pencil"></span>
-                            </button>
-                        </a>
-                        <a href="{% url 'checkin:checkin-delete' checkin.id %}">
-                            <button type="button" class=" btn btn-sm btn-danger"
-                                    data-form-url="">
-                                <span class="fa fa-trash"></span>
-                            </button>
-                        </a>
-
-                    </td>
+					<td>
+						<a href="{% url 'checkin:checkin-update' checkin.id %}">
+							<button
+								type="button"
+								class="btn btn-sm btn-primary mx-2"
+								data-form-url=""
+							>
+								<span class="fa fa-pencil"></span>
+							</button>
+						</a>
+						<a href="{% url 'checkin:checkin-delete' checkin.id %}">
+							<button
+								type="button"
+								class="btn btn-sm btn-danger"
+								data-form-url=""
+							>
+								<span class="fa fa-trash"></span>
+							</button>
+						</a>
+					</td>
 				</tr>
 				{% empty %}
 				<tr>

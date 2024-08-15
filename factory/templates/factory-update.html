@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    <title>Update a factory</title>
+{% endblock title %}
+
+
+{% block content %}
+    <div class="card p-3">
+        <div class="card-body">
+            <h4 class="mb-3">Update a factory</h4>
+            {% include "form.html" with form_name="Update a factory" %}
+        </div>
+    </div>
+
+{% endblock content %}

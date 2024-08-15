@@ -93,3 +93,7 @@
 .bg-view {
     background-color: #FFF;
 }
+
+.navbar-expand .navbar-nav{
+    margin-left: auto;
+}
