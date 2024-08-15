@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 # from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -16,9 +16,11 @@ class FactoryCreateView(generic.CreateView, SuccessMessageMixin):
     model = Factory
     form_class = FactoryForm
     template_name = 'factory-create.html'
-    success_message = 'Tạo nhà máy mới thành công!'
     success_url = reverse_lazy('factory:factory-view')
-
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Thông tin check-in của bạn đã được gửi thành công.")  # Add success message
+        return super().form_valid(form)
 
 class FactoryListView(generic.ListView, LoginRequiredMixin):
     model = Factory

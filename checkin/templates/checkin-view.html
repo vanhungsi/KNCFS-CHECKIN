@@ -5,6 +5,18 @@
 	<div class="container">
 		<div class="px-5 my-5 text-center">
 			<h1>CHECK-IN LIST VIEW</h1>
+			<!-- Date Picker -->
+			<form method="get" class="form-inline mb-2 d-flex justify-content-start align-items-center">
+				<label for="date" class="me-2" style="white-space: nowrap;">Chọn ngày:</label>
+				<input
+					type="date"
+					id="date"
+					name="date"
+					value="{{ request.GET.date|default:today|date:'Y-m-d' }}"
+					class="form-control mx-2"
+				/>
+				<button type="submit" class="btn btn-primary">Filter</button>
+			</form>
 		</div>
 		<table class="table">
 			<thead>
@@ -24,14 +36,11 @@
 				{% for checkin in object_list %}
 				<tr>
 					<td>{{ forloop.counter }}</td>
-					<!-- Index number -->
 					<td>{{ checkin.truck_number }}</td>
 					<td>{{ checkin.driver_name }}</td>
 					<td>{{ checkin.phone_number }}</td>
-					<td>{{ checkin.checkin_time|date:"h:i d/m/Y" }}</td>
-
+					<td>{{ checkin.checkin_time|date:"H:i d/m/y" }}</td>
 					<td>{{ checkin.factory.factory_name }}</td>
-
 					<td>{{ checkin.shipper }}</td>
 					<td>{{ checkin.remark }}</td>
 					<td>
@@ -66,4 +75,5 @@
 		</table>
 	</div>
 </div>
+
 {% endblock content %}
