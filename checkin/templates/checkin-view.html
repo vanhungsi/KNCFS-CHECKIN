@@ -29,6 +29,7 @@
 					<th scope="col">NHÀ MÁY</th>
 					<th scope="col">SHIPPER</th>
 					<th scope="col">GHI CHÚ</th>
+					<th scope="col">CHỮ KÝ</th>
 					<th scope="col" class="px-4">Action</th>
 				</tr>
 			</thead>
@@ -43,6 +44,13 @@
 					<td>{{ checkin.factory.factory_name }}</td>
 					<td>{{ checkin.shipper }}</td>
 					<td>{{ checkin.remark }}</td>
+                    <td>
+						{% if checkin.signature %}
+							<img src="{{ checkin.signature }}" alt="Signature" style="max-height: 50px; max-width: 100px;">
+						{% else %}
+							No signature
+						{% endif %}
+					</td>
 					<td>
 						<a href="{% url 'checkin:checkin-update' checkin.id %}">
 							<button

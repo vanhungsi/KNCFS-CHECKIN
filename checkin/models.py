@@ -12,6 +12,7 @@ class Checkin(models.Model):
     factory = models.ForeignKey(Factory, blank=True, null=True, on_delete=models.SET_NULL)
     shipper = models.CharField("Shipper", max_length=100, blank=True, null=True)
     remark = models.TextField("Ghi chú", max_length=1024, blank=True, null=True)
+    signature = models.TextField(blank=True, null=True)
 
     def __str__(self):
         factory_code = self.factory.factory_code if self.factory else "No Factory"

@@ -5,19 +5,22 @@
 		<meta charset="UTF-8" />
 		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CFS1 CHECK-IN</title>
+		<title>KNCFS CHECK-IN</title>
 		<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 	</head>
 	<body>
 		<div class="bg-create">
 			<div class="checkinForm">
 				<div class="title">
-					<h2>CFS CHECK-IN</h2>
+					<h2>KNCFS CHECK-IN</h2>
 				</div>
 
 				<div class="box">
 					
 					<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                   
+
                     <script>
                     {% for message in messages %}
 		            swal({
@@ -29,10 +32,14 @@
                     {% endfor %}
                 </script>
 
+
+   
+
+
                     <!-- Form -->
 					<div class="checkin form">
 						<h3>Thông tin check-in</h3>
-						<form method="post" action="">
+						<form method="post" action="" id="checkin-form">
 							{% csrf_token %}
 							<div class="form-group">
 								<label for="{{ form.driver_name.id_for_label }}"
@@ -79,6 +86,12 @@
 								>
 								{{ form.remark }}
 							</div>
+                            <div class="form-group">
+                                <label for="signature">Chữ ký</label>
+                                <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
+                                <button type="button" onclick="clearSignature()">Clear</button>
+                                <input type="hidden" name="signature" id="signature-input">
+                            </div>
 							<button type="submit" class="submit-btn">
 								Gửi
 							</button>
@@ -87,6 +100,30 @@
 				</div>
 			</div>
 		</div>
-
+        <script>
+            // Initialize the signature pad
+            var canvas = document.getElementById('signature-pad');
+            var signaturePad = new SignaturePad(canvas);
+        
+            // Clear the signature pad
+            function clearSignature() {
+                signaturePad.clear();
+            }
+        
+            // On form submit, save the signature to the hidden input field
+            function submitForm(event) {
+                if (!signaturePad.isEmpty()) {
+                    var signatureData = signaturePad.toDataURL(); // Includes the data:image/png;base64, prefix
+                    document.getElementById('signature-input').value = signatureData;
+                } else {
+                    // Optionally handle the case where no signature was provided
+                    alert('Xin vui lòng kí tên');
+                    event.preventDefault();  // Prevent form submission if signature is empty
+                }
+            }
+        
+            // Attach the submitForm function to the form submission event
+            document.getElementById('checkin-form').addEventListener('submit', submitForm);
+        </script>
 	</body>
 </html>
