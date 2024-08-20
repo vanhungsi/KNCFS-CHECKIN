@@ -26,7 +26,7 @@ class CheckinCreateView(generic.CreateView, SuccessMessageMixin):
 
 
 
-class CheckinListView(generic.ListView, LoginRequiredMixin):
+class CheckinListView(generic.ListView, LoginRequiredMixin, ):
     model = Checkin
     template_name ='checkin-view.html'
     ordering = ['-checkin_time']
